@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gameon/colors.dart' as clr;
+import 'package:gameon/style.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 
@@ -22,7 +27,16 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primaryColor: clr.primaryBlueColor,
+        textTheme: GoogleFonts.interTextTheme().copyWith(
+          bodyText1: GoogleFonts.inter(textStyle: descTextStyle),
+          bodyText2: GoogleFonts.inter(textStyle: bigDescTextStyle),
+          headline1: GoogleFonts.roboto(textStyle: bigTitleTextStyle),
+          headline2: GoogleFonts.roboto(textStyle: semiBigDescTextStyle),
+          headline3: GoogleFonts.roboto(textStyle: big2TitleTextStyle),
+          subtitle1: GoogleFonts.inter(textStyle: smallTitleTextStyle),
+          subtitle2: GoogleFonts.roboto(textStyle: bigDescTextStyle),
+        ),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -105,11 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
