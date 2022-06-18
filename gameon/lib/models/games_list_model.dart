@@ -1,7 +1,5 @@
-// ignore_for_file: file_names
-
-class GamesModel {
-  GamesModel({
+class GamesList {
+  GamesList({
     required this.count,
     required this.next,
     required this.previous,
@@ -9,12 +7,12 @@ class GamesModel {
     required this.userPlatforms,
   });
   late final int count;
-  late final String next;
-  late final String previous;
+  late final String? next;
+  late final String? previous;
   late final List<Results> results;
   late final bool userPlatforms;
   
-  GamesModel.fromJson(Map<String, dynamic> json){
+  GamesList.fromJson(Map<String, dynamic> json){
     count = json['count'];
     next = json['next'];
     previous = json['previous'];
@@ -73,22 +71,22 @@ class Results {
   late final String released;
   late final bool tba;
   late final String backgroundImage;
-  late final int rating;
+  late final double rating;
   late final int ratingTop;
   late final List<Ratings> ratings;
   late final int ratingsCount;
   late final int reviewsTextCount;
   late final int added;
-  late final AddedByStatus addedByStatus;
-  late final int metacritic;
+  late final AddedByStatus? addedByStatus;
+  late final int? metacritic;
   late final int suggestionsCount;
   late final String updated;
   late final int id;
   late final List<Tags> tags;
-  late final EsrbRating esrbRating;
+  late final EsrbRating? esrbRating;
   late final Null userGame;
   late final int reviewsCount;
-  late final int communityRating;
+  late final int? communityRating;
   late final String saturatedColor;
   late final String dominantColor;
   late final List<ShortScreenshots> shortScreenshots;
@@ -110,13 +108,13 @@ class Results {
     ratingsCount = json['ratings_count'];
     reviewsTextCount = json['reviews_text_count'];
     added = json['added'];
-    addedByStatus = AddedByStatus.fromJson(json['added_by_status']);
+    addedByStatus = json['added_by_status'] != null ? AddedByStatus.fromJson(json['added_by_status']) : null;
     metacritic = json['metacritic'];
     suggestionsCount = json['suggestions_count'];
     updated = json['updated'];
     id = json['id'];
     tags = List.from(json['tags']).map((e)=>Tags.fromJson(e)).toList();
-    esrbRating = EsrbRating.fromJson(json['esrb_rating']);
+    esrbRating =  json['esrb_rating'] != null ? EsrbRating.fromJson(json['esrb_rating']) : null;
     userGame = null;
     reviewsCount = json['reviews_count'];
     communityRating = json['community_rating'];
@@ -143,13 +141,13 @@ class Results {
     _data['ratings_count'] = ratingsCount;
     _data['reviews_text_count'] = reviewsTextCount;
     _data['added'] = added;
-    _data['added_by_status'] = addedByStatus.toJson();
+    _data['added_by_status'] = addedByStatus?.toJson();
     _data['metacritic'] = metacritic;
     _data['suggestions_count'] = suggestionsCount;
     _data['updated'] = updated;
     _data['id'] = id;
     _data['tags'] = tags.map((e)=>e.toJson()).toList();
-    _data['esrb_rating'] = esrbRating.toJson();
+    _data['esrb_rating'] = esrbRating?.toJson();
     _data['user_game'] = userGame;
     _data['reviews_count'] = reviewsCount;
     _data['community_rating'] = communityRating;
@@ -256,7 +254,7 @@ class Ratings {
   late final int id;
   late final String title;
   late final int count;
-  late final int percent;
+  late final double percent;
   
   Ratings.fromJson(Map<String, dynamic> json){
     id = json['id'];
@@ -282,10 +280,10 @@ class AddedByStatus {
     required this.toplay,
     required this.dropped,
   });
-  late final int yet;
-  late final int owned;
-  late final int toplay;
-  late final int dropped;
+  late final int? yet;
+  late final int? owned;
+  late final int? toplay;
+  late final int? dropped;
   
   AddedByStatus.fromJson(Map<String, dynamic> json){
     yet = json['yet'];
