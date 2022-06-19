@@ -187,9 +187,6 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                     ),
                   ),
                 );
-                // Column(
-                //   children: [Text(state.name), Text(state.description)],
-                // );
               } else {
                 return const Text('Something went wrong!');
               }

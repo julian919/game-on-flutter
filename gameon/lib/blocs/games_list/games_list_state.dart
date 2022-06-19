@@ -13,7 +13,4 @@ class GamesListLoadedState extends GamesListState {
   final int totalPages;
   final List<Results> results;
   const GamesListLoadedState(this.currentPageNo, this.totalPages, this.results);
-
-  @override
-  List<Object> get props => [currentPageNo, totalPages, results];
 }

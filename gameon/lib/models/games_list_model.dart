@@ -54,7 +54,6 @@ class Results {
     required this.id,
     required this.tags,
     required this.esrbRating,
-     this.userGame,
     required this.reviewsCount,
     required this.communityRating,
     required this.saturatedColor,
@@ -84,7 +83,6 @@ class Results {
   late final int id;
   late final List<Tags>? tags;
   late final EsrbRating? esrbRating;
-  late final Null userGame;
   late final int reviewsCount;
   late final int? communityRating;
   late final String saturatedColor;
@@ -115,7 +113,6 @@ class Results {
     id = json['id'];
     tags = json['tags'] != null ? List.from(json['tags']).map((e)=>Tags.fromJson(e)).toList() : null;
     esrbRating =  json['esrb_rating'] != null ? EsrbRating.fromJson(json['esrb_rating']) : null;
-    userGame = null;
     reviewsCount = json['reviews_count'];
     communityRating = json['community_rating'];
     saturatedColor = json['saturated_color'];
@@ -148,7 +145,6 @@ class Results {
     _data['id'] = id;
     _data['tags'] = tags?.map((e)=>e.toJson()).toList();
     _data['esrb_rating'] = esrbRating?.toJson();
-    _data['user_game'] = userGame;
     _data['reviews_count'] = reviewsCount;
     _data['community_rating'] = communityRating;
     _data['saturated_color'] = saturatedColor;

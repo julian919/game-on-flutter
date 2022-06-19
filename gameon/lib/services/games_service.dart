@@ -33,14 +33,10 @@ class GamesService {
   }
 
   Future<GameDetails> getGameDetails(String id) async {
-    print('enter');
-    print(id);
     final response = await api.getData('/' + id + '?');
     if (response.statusCode == 200) {
       return GameDetails.fromJson(jsonDecode(response.body));
     }
-
-    print(response.statusCode);
 
     throw Exception('Failed to load game detail of id :' + id);
   }

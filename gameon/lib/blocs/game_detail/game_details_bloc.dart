@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:gameon/models/game_details_model.dart';
 import 'package:gameon/services/games_service.dart';
 import 'package:meta/meta.dart';
 

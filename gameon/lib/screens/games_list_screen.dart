@@ -57,19 +57,12 @@ class GamesListScreen extends StatelessWidget {
                               metacriticScore: currentGame.metacritic,
                             ),
                           );
-                          // Text(state.results[index].name);
                         }),
                   ),
-                  // const Spacer(flex: 1,),
                   Flexible(
-                    // flex: 1,
-                    // height: 30,
-                    // fit: FlexFit.,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 16.0),
                       child: ScrollablePositionedList.builder(
-                          // physics: ScrollPhysics(),
-                          // addAutomaticKeepAlives: true,
                           initialScrollIndex:
                               int.parse(state.currentPageNo) - 1,
                           shrinkWrap: true,
