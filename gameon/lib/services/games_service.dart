@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:gameon/functions/api.dart';
+import 'package:gameon/models/game_details_model.dart';
 import 'package:gameon/models/games_list_model.dart';
 import 'package:intl/intl.dart';
 
-class GamesListService {
+class GamesService {
   var api = Network();
 
   Future<GamesList> getLatestGames(String pageNo) async {
@@ -29,5 +30,18 @@ class GamesListService {
     }
 
     throw Exception('Failed to load latest PS5 games list');
+  }
+
+  Future<GameDetails> getGameDetails(String id) async {
+    print('enter');
+    print(id);
+    final response = await api.getData('/' + id + '?');
+    if (response.statusCode == 200) {
+      return GameDetails.fromJson(jsonDecode(response.body));
+    }
+
+    print(response.statusCode);
+
+    throw Exception('Failed to load game detail of id :' + id);
   }
 }

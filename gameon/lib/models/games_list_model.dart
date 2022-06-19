@@ -67,10 +67,10 @@ class Results {
   late final String name;
   late final int playtime;
   late final List<Platforms> platforms;
-  late final List<Stores> stores;
+  late final List<Stores>? stores;
   late final String released;
   late final bool tba;
-  late final String backgroundImage;
+  late final String? backgroundImage;
   late final double rating;
   late final int ratingTop;
   late final List<Ratings> ratings;
@@ -82,7 +82,7 @@ class Results {
   late final int suggestionsCount;
   late final String updated;
   late final int id;
-  late final List<Tags> tags;
+  late final List<Tags>? tags;
   late final EsrbRating? esrbRating;
   late final Null userGame;
   late final int reviewsCount;
@@ -98,7 +98,7 @@ class Results {
     name = json['name'];
     playtime = json['playtime'];
     platforms = List.from(json['platforms']).map((e)=>Platforms.fromJson(e)).toList();
-    stores = List.from(json['stores']).map((e)=>Stores.fromJson(e)).toList();
+    stores = json['stores']  != null ? List.from(json['stores']).map((e)=>Stores.fromJson(e)).toList() : null;
     released = json['released'];
     tba = json['tba'];
     backgroundImage = json['background_image'];
@@ -113,7 +113,7 @@ class Results {
     suggestionsCount = json['suggestions_count'];
     updated = json['updated'];
     id = json['id'];
-    tags = List.from(json['tags']).map((e)=>Tags.fromJson(e)).toList();
+    tags = json['tags'] != null ? List.from(json['tags']).map((e)=>Tags.fromJson(e)).toList() : null;
     esrbRating =  json['esrb_rating'] != null ? EsrbRating.fromJson(json['esrb_rating']) : null;
     userGame = null;
     reviewsCount = json['reviews_count'];
@@ -131,7 +131,7 @@ class Results {
     _data['name'] = name;
     _data['playtime'] = playtime;
     _data['platforms'] = platforms.map((e)=>e.toJson()).toList();
-    _data['stores'] = stores.map((e)=>e.toJson()).toList();
+    _data['stores'] = stores?.map((e)=>e.toJson()).toList();
     _data['released'] = released;
     _data['tba'] = tba;
     _data['background_image'] = backgroundImage;
@@ -146,7 +146,7 @@ class Results {
     _data['suggestions_count'] = suggestionsCount;
     _data['updated'] = updated;
     _data['id'] = id;
-    _data['tags'] = tags.map((e)=>e.toJson()).toList();
+    _data['tags'] = tags?.map((e)=>e.toJson()).toList();
     _data['esrb_rating'] = esrbRating?.toJson();
     _data['user_game'] = userGame;
     _data['reviews_count'] = reviewsCount;

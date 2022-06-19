@@ -14,19 +14,19 @@ const TextStyle big2TitleTextStyle = TextStyle(
     fontWeight: FontWeight.bold);
 
 const TextStyle bigDescTextStyle = TextStyle(
-  color: clr.lightGreyText,
+  color: clr.greyColor,
   fontSize: 16,
   height: 1.5,
 );
 
 const TextStyle semiBigDescTextStyle = TextStyle(
-  color: clr.blackColor,
+  color: clr.greyColor,
   fontSize: 18,
   height: 1.2,
 );
 
 const TextStyle descTextStyle =
-    TextStyle(color: clr.lightGreyText, fontSize: 14, height: 1.5);
+    TextStyle(color: clr.greyColor, fontSize: 14, height: 1.2);
 
 const TextStyle smallTitleTextStyle = TextStyle(
     color: clr.blackColor,

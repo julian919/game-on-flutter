@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gameon/colors.dart' as clr;
 import 'package:gameon/screens/games_list_screen.dart';
-import 'package:gameon/repositories/games_list_repository.dart';
+import 'package:gameon/services/games_service.dart';
 import 'package:gameon/style.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -9,7 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  runApp(MultiRepositoryProvider(
+    providers: [
+      RepositoryProvider(
+        create: (context) => GamesService(),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,36 +26,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primaryColor: clr.primaryBlueColor,
-          textTheme: GoogleFonts.interTextTheme().copyWith(
-            bodyText1: GoogleFonts.inter(textStyle: descTextStyle),
-            bodyText2: GoogleFonts.inter(textStyle: bigDescTextStyle),
-            headline1: GoogleFonts.roboto(textStyle: bigTitleTextStyle),
-            headline2: GoogleFonts.roboto(textStyle: semiBigDescTextStyle),
-            headline3: GoogleFonts.roboto(textStyle: big2TitleTextStyle),
-            subtitle1: GoogleFonts.inter(textStyle: smallTitleTextStyle),
-            subtitle2: GoogleFonts.roboto(textStyle: bigDescTextStyle),
-          ),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primaryColor: clr.primaryBlueColor,
+        appBarTheme: const AppBarTheme(backgroundColor: clr.primaryBlueColor),
+        textTheme: GoogleFonts.interTextTheme().copyWith(
+          bodyText1: GoogleFonts.inter(textStyle: descTextStyle),
+          bodyText2: GoogleFonts.inter(textStyle: bigDescTextStyle),
+          // headline1: GoogleFonts.roboto(textStyle: bigTitleTextStyle),
+          headline1: GoogleFonts.roboto(textStyle: semiBigDescTextStyle),
+          // headline3: GoogleFonts.roboto(textStyle: big2TitleTextStyle),
+          subtitle1: GoogleFonts.inter(textStyle: smallTitleTextStyle),
+          // subtitle2: GoogleFonts.roboto(textStyle: bigDescTextStyle),
         ),
-        home: MultiRepositoryProvider(
-          providers: [
-            RepositoryProvider(
-              create: (context) => GamesListService(),
-            ),
-          ],
-          child: const GamesListScreen(),
-        ));
+      ),
+      home: const GamesListScreen(),
+    );
   }
 }
 
