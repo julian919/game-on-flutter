@@ -32,6 +32,7 @@ class GamesService {
 
   Future<GameDetails> getGameDetails(String id) async {
     final response = await api.getData('/' + id + '?');
+
     if (response.statusCode == 200) {
       return GameDetails.fromJson(jsonDecode(response.body));
     }

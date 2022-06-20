@@ -89,8 +89,14 @@ class GamesListScreen extends StatelessWidget {
                   )
                 ],
               );
+            }
+            if (state is GamesListFailLoadingState) {
+              return AlertDialog(
+                title: const Text('Error'),
+                content: Text(state.message),
+              );
             } else {
-              return const Text('An error occured');
+              return const Text('Unexpected error occured');
             }
           })),
         ),

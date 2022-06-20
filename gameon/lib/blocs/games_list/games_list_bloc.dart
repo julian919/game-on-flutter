@@ -11,12 +11,16 @@ class GamesListBloc extends Bloc<GamesListEvent, GamesListState> {
 
   GamesListBloc(this._gamesService) : super(GamesListLoadingState()) {
     on<InitialLoadGameList>((event, emit) async {
-      final gamesList =
-          await _gamesService.getLatestGames(event.pageNo.toString());
-      //only calc total pages on init
-      int totalPages = (gamesList.count / 20).ceil();
-      emit(GamesListLoadedState(
-          event.pageNo.toString(), totalPages, gamesList.results));
+      try {
+        final gamesList =
+            await _gamesService.getLatestGames(event.pageNo.toString());
+        //only calc total pages on init
+        int totalPages = (gamesList.count / 20).ceil();
+        emit(GamesListLoadedState(
+            event.pageNo.toString(), totalPages, gamesList.results));
+      } catch (error) {
+        emit(GamesListFailLoadingState(error.toString()));
+      }
     });
     on<LoadGameList>((event, emit) async {
       int totalPages = 0;
@@ -25,11 +29,15 @@ class GamesListBloc extends Bloc<GamesListEvent, GamesListState> {
         totalPages = state.totalPages;
       }
       emit(GamesListLoadingState());
-      final gamesList = await _gamesService
-          .getLatestGames(event.currentPageNo.toString());
+      try {
+        final gamesList =
+            await _gamesService.getLatestGames(event.currentPageNo.toString());
 
-      emit(GamesListLoadedState(
-          event.currentPageNo.toString(), totalPages, gamesList.results));
+        emit(GamesListLoadedState(
+            event.currentPageNo.toString(), totalPages, gamesList.results));
+      } catch (error) {
+        emit(GamesListFailLoadingState(error.toString()));
+      }
     });
   }
 }

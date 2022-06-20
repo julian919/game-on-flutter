@@ -7,6 +7,11 @@ abstract class GameDetailsState {
 
 class GameDetailsLoadingState extends GameDetailsState {}
 
+class GameDetailsFailedLoadingState extends GameDetailsState {
+  final String message;
+  const GameDetailsFailedLoadingState(this.message);
+}
+
 class GameDetailsLoadedState extends GameDetailsState {
   final String name;
   final String description;

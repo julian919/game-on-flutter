@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'PS5 Games',
+      debugShowCheckedModeBanner:false,
       theme: ThemeData(
         primaryColor: clr.primaryBlueColor,
         appBarTheme: const AppBarTheme(backgroundColor: clr.primaryBlueColor),

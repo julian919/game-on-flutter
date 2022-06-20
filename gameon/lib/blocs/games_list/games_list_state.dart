@@ -5,7 +5,11 @@ abstract class GamesListState {
   const GamesListState();
 }
 
-class GamesListLoadingState extends GamesListState {
+class GamesListLoadingState extends GamesListState {}
+
+class GamesListFailLoadingState extends GamesListState {
+  final String message;
+  const GamesListFailLoadingState(this.message);
 }
 
 class GamesListLoadedState extends GamesListState {

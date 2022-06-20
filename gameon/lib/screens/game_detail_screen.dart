@@ -187,8 +187,19 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                     ),
                   ),
                 );
+              }
+              if (state is GameDetailsFailedLoadingState) {
+                return AlertDialog(
+                  title: const Text('Error'),
+                  content: Text(state.message),
+                  actions: [
+                    TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Go back'))
+                  ],
+                );
               } else {
-                return const Text('Something went wrong!');
+                return const Text('Unexpected error occured');
               }
             },
           ),
