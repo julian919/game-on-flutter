@@ -9,7 +9,6 @@ class GamesService {
   var api = Network();
 
   Future<GamesList> getLatestGames(String pageNo) async {
-    // print('yo wadahek');
     var currentDate = DateTime.now();
     var formattedCurrentDate = DateFormat('yyyy-MM-dd').format(currentDate);
     var previousYearDate =
@@ -25,7 +24,6 @@ class GamesService {
         '&ordering=-released');
 
     if (response.statusCode == 200) {
-      // print(response.body);
       return GamesList.fromJson(jsonDecode(response.body));
     }
 
